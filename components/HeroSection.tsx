@@ -6,9 +6,9 @@ import { Button } from '@/components/ui/button';
 
 const Hero = () => {
   return (
-    <section className="relative flex h-screen flex-col items-start justify-center overflow-hidden">
+    <section className="h-screen flex flex-col items-start justify-center overflow-hidden">
       {/* Full Background Image */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 z-10">
         <Image
           src="/wavy-bg.png"
           alt="Abstract wavy background"
@@ -26,7 +26,7 @@ const Hero = () => {
         transition={{ duration: 1, ease: 'easeOut' }}
       >
         <motion.h1
-          className="text-4xl font-bold leading-tight md:text-6xl lg:text-7xl  bg-gradient-to-l from-[#8d092c] via-[#c94f7c] to-[#f2b8c6] bg-clip-text text-transparent"
+          className="text-4xl font-bold leading-tight md:text-6xl lg:text-7xl mb-2  bg-gradient-to-l from-[#8d092c] via-[#c94f7c] to-[#f2b8c6] bg-clip-text text-transparent"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.9 }}
@@ -55,9 +55,10 @@ const Hero = () => {
           transition={{ delay: 1.1, duration: 0.8 }}
         >
           <motion.div
+            className="rounded-4xl"
             whileHover={{
               scale: 1.05,
-              boxShadow: '0px 6px 20px rgba(56, 189, 248, 0.4)',
+              boxShadow: '0px 6px 13px rgba(56, 189, 248, 0.4)',
             }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
