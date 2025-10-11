@@ -68,7 +68,7 @@ const Navbar = () => {
             >
               <Link
                 href={link.href}
-                className="relative text-white/90 hover:text-white transition-colors duration-200"
+                className="relative text-white/90 hover:text-white transition-colors duration-200 hover:border-2 hover:border-white/20 p-2 rounded-2xl font-medium"
               >
                 {link.label}
                 <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#8d092c] to-[#c94f7c] transition-all duration-300 hover:w-full" />
