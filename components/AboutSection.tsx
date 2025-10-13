@@ -22,7 +22,7 @@ const About = () => {
       <div className="container mb-10 mx-auto flex flex-col md:flex-row items-center justify-between gap-12 px-6 md:px-12 lg:px-20">
         {/* Image side */}
         <motion.div
-          className="relative w-full md:w-1/2 h-[300px] rounded-2xl overflow-hidden shadow-lg"
+          className="relative w-full md:w-1/2 h-[350px] rounded-2xl overflow-hidden shadow-lg"
           initial={{ opacity: 0, x: -60 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, ease: 'easeOut' }}
@@ -32,7 +32,7 @@ const About = () => {
             src="/tunde.jpg"
             alt="Graphic designer at work"
             fill
-            className=" object-cover object-top"
+            className=" object-cover object-center"
           />
         </motion.div>
 
