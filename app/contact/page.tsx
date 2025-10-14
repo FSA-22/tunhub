@@ -5,9 +5,9 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Instagram, Facebook, MessageCircle } from 'lucide-react';
+import { FaInstagram, FaFacebook, FaWhatsapp } from 'react-icons/fa';
 
-export default function ContactPage() {
+const ContactPage = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
@@ -17,11 +17,34 @@ export default function ContactPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Connect to your API endpoint or FormSubmit
-    setSubmitted(true);
-    setForm({ name: '', email: '', message: '' });
+
+    try {
+      // ✅ Send form using FormSubmit
+      const res = await fetch(
+        'https://formsubmit.co/ajax/tunhubconcept@gmail.com',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: form.name,
+            email: form.email,
+            message: form.message,
+          }),
+        },
+      );
+
+      if (res.ok) {
+        setSubmitted(true);
+        setForm({ name: '', email: '', message: '' });
+      } else {
+        alert('Something went wrong. Please try again later.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to send message.');
+    }
   };
 
   return (
@@ -123,31 +146,38 @@ export default function ContactPage() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}
       >
+        {/* WhatsApp */}
         <a
-          href="https://wa.me/234XXXXXXXXXX"
+          href="https://wa.me/2349030330133?text=Hello%2C%20I%20would%20like%20to%20get%20in%20touch%20with%20you."
           target="_blank"
           rel="noopener noreferrer"
-          className="p-3 rounded-full bg-white shadow-md hover:shadow-lg hover:text-[#8d092c] transition"
+          className="p-3 rounded-full bg-white shadow-md hover:shadow-lg hover:text-[#25D366] transition"
         >
-          <MessageCircle className="w-6 h-6" />
+          <FaWhatsapp className="w-6 h-6" />
         </a>
+
+        {/* Instagram */}
         <a
-          href="https://instagram.com/yourhandle"
+          href="https://instagram.com/tunhub_graphic"
           target="_blank"
           rel="noopener noreferrer"
           className="p-3 rounded-full bg-white shadow-md hover:shadow-lg hover:text-[#8d092c] transition"
         >
-          <Instagram className="w-6 h-6" />
+          <FaInstagram className="w-6 h-6" />
         </a>
+
+        {/* Facebook */}
         <a
-          href="https://facebook.com/yourpage"
+          href="https://facebook.com/share/1BGmWp9avz/"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-3 rounded-full bg-white shadow-md hover:shadow-lg hover:text-[#8d092c] transition"
+          className="p-3 rounded-full bg-white shadow-md hover:shadow-lg hover:text-[#1877F2] transition"
         >
-          <Facebook className="w-6 h-6" />
+          <FaFacebook className="w-6 h-6" />
         </a>
       </motion.div>
     </section>
   );
-}
+};
+
+export default ContactPage;
