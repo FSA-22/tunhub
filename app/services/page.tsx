@@ -74,7 +74,7 @@ export default function ServicesPage() {
               </div>
               <h3 className="font-semibold text-lg">{service.name}</h3>
               <p className="text-gray-400 text-sm mt-2">
-                {service.shortDesc || 'Creative and professional service'}
+                {service.description || 'Creative and professional service'}
               </p>
             </motion.div>
           </Link>
