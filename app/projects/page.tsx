@@ -32,7 +32,7 @@ const ProjectsPage = () => {
           Our Projects
         </h1>
         <p className="mt-4 text-gray-300 max-w-2xl mx-auto">
-          Explore TunHub’s catalogue of creative works — from branding and
+          Explore TunHub&quot;s catalogue of creative works — from branding and
           merchandise to event designs and prints.
         </p>
       </motion.div>
@@ -102,7 +102,7 @@ const ProjectsPage = () => {
           animate={{ opacity: 1 }}
           className="text-center mt-20 text-gray-400 italic"
         >
-          No projects found for "{selectedCategory}".
+          No projects found for {selectedCategory}.
         </motion.p>
       )}
     </section>

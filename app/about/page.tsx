@@ -1,206 +1,183 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { FaFigma, FaCameraRetro, FaPaintBrush } from 'react-icons/fa';
 import {
   SiAdobephotoshop,
   SiAdobeillustrator,
   SiCanva,
-  SiFigma,
-  SiBlender,
-  SiAdobepremierepro,
+  SiAdobelightroom,
+  SiCoreldraw,
 } from 'react-icons/si';
-import { useRef } from 'react';
+
+import { Button } from '@/components/ui/button';
+import { ABOUT_ME, name, testimonials } from '@/constants/about';
+
+const tools = [
+  {
+    icon: <SiAdobephotoshop className="text-sky-400 text-4xl" />,
+    name: 'Photoshop',
+  },
+  {
+    icon: <SiAdobeillustrator className="text-orange-500 text-4xl" />,
+    name: 'Illustrator',
+  },
+  {
+    icon: <SiCoreldraw className="text-green-500 text-4xl" />,
+    name: 'CorelDRAW',
+  },
+  { icon: <SiCanva className="text-cyan-400 text-4xl" />, name: 'Canva' },
+  {
+    icon: <SiAdobelightroom className="text-blue-400 text-4xl" />,
+    name: 'Lightroom',
+  },
+  { icon: <FaFigma className="text-pink-500 text-4xl" />, name: 'Figma' },
+  {
+    icon: <FaCameraRetro className="text-yellow-400 text-4xl" />,
+    name: 'Photography',
+  },
+  {
+    icon: <FaPaintBrush className="text-purple-400 text-4xl" />,
+    name: 'Brand Design',
+  },
+];
 
 const AboutPage = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end start'],
-  });
-
-  // Smooth parallax transform
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '40%']);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.6]);
-
-  const tools = [
-    {
-      name: 'Adobe Photoshop',
-      icon: <SiAdobephotoshop className="text-[#31A8FF]" />,
-    },
-    {
-      name: 'Adobe Illustrator',
-      icon: <SiAdobeillustrator className="text-[#FF9A00]" />,
-    },
-    { name: 'Canva', icon: <SiCanva className="text-[#00C4CC]" /> },
-    { name: 'Figma', icon: <SiFigma className="text-[#F24E1E]" /> },
-    { name: 'Blender', icon: <SiBlender className="text-[#F5792A]" /> },
-    {
-      name: 'Premiere Pro',
-      icon: <SiAdobepremierepro className="text-[#9999FF]" />,
-    },
-  ];
-
-  const testimonials = [
-    {
-      name: 'Samuel Adeyemi',
-      role: 'Brand Owner, SkyPrint',
-      feedback:
-        'Working with him was a breeze. He understood my brand vision perfectly and delivered designs that exceeded expectations.',
-      image: '/images/client1.jpg',
-    },
-    {
-      name: 'Mary Johnson',
-      role: 'Event Planner',
-      feedback:
-        'Every banner and flyer he designed brought life to my events. Great communication and professional all through!',
-      image: '/images/client2.jpg',
-    },
-    {
-      name: 'Ahmed Bello',
-      role: 'Business Owner',
-      feedback:
-        'Creative, timely, and detail-oriented. My custom prints came out so beautiful. Highly recommended!',
-      image: '/images/client3.jpg',
-    },
-  ];
-
   return (
-    <section
-      ref={ref}
-      className="min-h-screen bg-gradient-to-b from-[#b23d63] to-[#f9fafb] overflow-hidden"
-    >
-      {/* 🔥 HERO SECTION with Parallax */}
-      <div className="relative h-[90vh] overflow-hidden flex items-center justify-center text-center md:text-left">
-        {/* Background gradient overlay */}
-        <motion.div
-          style={{ y, scale, opacity }}
-          className="absolute inset-0 z-0 bg-gradient-to-r from-[#8d092c] via-[#b23d63] to-[#f2b8c6]"
-        />
+    <section className="min-h-screen bg-gradient-to-br from-[#0a0524] via-[#1a0b44] to-[#2b0f5e] text-white relative overflow-hidden">
+      {/* Animated Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#e91e63_0%,_transparent_70%)] opacity-30 animate-pulse" />
 
-        {/* Subtle background designer image (blurred overlay) */}
-        <motion.div
-          style={{ y, scale, opacity }}
-          className="absolute inset-0 z-0 opacity-20"
-        >
-          <Image
-            src="/ceo.jpg"
-            alt="Designer Background"
-            fill
-            className="object-cover blur-md"
-            priority
-          />
-        </motion.div>
-
-        {/* Hero Content */}
-        <motion.div
-          className="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 px-6 md:px-12 lg:px-20"
+      {/* HERO SECTION */}
+      <div className="relative px-6 md:px-12 lg:px-20 py-24 text-center">
+        <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
+          className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-[#e91e63] via-[#f06292] to-[#ffb6c1] bg-clip-text text-transparent"
         >
-          <div className="flex-1">
-            <h1 className="text-5xl md:text-6xl font-bold text-[#e337] mb-6 leading-tight">
-              Designing <span className="text-[#325]">Stories</span> That
-              Inspire
-            </h1>
-            <p className="text-gray-900 text-lg md:text-xl mb-8 max-w-md">
-              I’m a creative designer passionate about turning bold ideas into
-              timeless visual experiences.
-            </p>
-            <Button
-              asChild
-              className="bg-white text-[#8d092c] hover:bg-[#f2b8c6] font-semibold px-8 py-4 rounded-full text-lg"
-            >
-              <Link href="/projects">View My Works</Link>
-            </Button>
-          </div>
-
-          {/* Floating portrait */}
-          <motion.div
-            className="flex-1 flex justify-center relative"
-            style={{ y }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="relative w-[300px] h-[300px] md:w-[380px] md:h-[380px] rounded-full overflow-hidden shadow-2xl border-4 border-white/30">
-              <Image
-                src="/logo.jpg"
-                alt="Designer portrait"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Bottom fade gradient */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-white z-10"></div>
+          About TunHub
+        </motion.h1>
+        <p className="mt-6 text-gray-300 max-w-3xl mx-auto text-lg">
+          TunHub is a creative hub specializing in **graphic design, brand
+          identity, print, and product photography**. We help brands express
+          their stories through visuals that speak louder than words.
+        </p>
       </div>
 
-      {/* 🧠 ABOUT SECTION */}
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 flex flex-col-reverse lg:flex-row items-center gap-12">
-        <motion.div
-          className="flex-1 flex justify-center"
-          initial={{ opacity: 0, x: 60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <div className="relative w-[320px] h-[320px] md:w-[400px] md:h-[400px] rounded-full overflow-hidden shadow-lg border-4 border-[#8d092c]/20">
-            <Image
-              src="/ceo.jpg"
-              alt="Designer portrait"
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        </motion.div>
+      {/* CEO SECTION */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-16 grid md:grid-cols-2 gap-10 items-center"
+      >
+        <div className="relative">
+          <Image
+            src="/ceo.jpg"
+            alt="TunHub CEO"
+            width={500}
+            height={400}
+            className="rounded-2xl object-cover shadow-[0_0_25px_rgba(233,30,99,0.4)]"
+          />
+        </div>
 
-        <motion.div
-          className="flex-1"
-          initial={{ opacity: 0, x: -60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-[#8d092c] via-[#c94f7c] to-[#f2b8c6] bg-clip-text text-transparent mb-6">
-            About Me
+        <div>
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-[#e91e63] to-[#9c27b0] bg-clip-text text-transparent mb-4">
+            Meet Our Creative Director
           </h2>
-          <p className="text-gray-700 leading-relaxed mb-6">
-            Hi there! 👋 I’m{' '}
-            <span className="font-semibold text-[#8d092c]">
-              a passionate Graphic Designer
-            </span>{' '}
-            with a flair for transforming ideas into powerful visual stories. My
-            work focuses on creating meaningful designs that leave a lasting
-            impression — from brand visuals and digital art to personalized
-            print products.
+          <p className="text-gray-400 mb-6">
+            Hello, <span className="text-2xl font-semibold">{name}</span>
+            {ABOUT_ME}
           </p>
-
-          <p className="text-gray-700 leading-relaxed mb-6">
-            Over the years, I’ve collaborated with individuals, brands, and
-            businesses to craft designs that are not only visually appealing but
-            also emotionally engaging. Every project I take on is a chance to
-            tell a story — <span className="italic">your story</span> — through
-            design.
+          <p className="text-gray-400">
+            “At TunHub, we do not just design — we communicate. Every project is
+            a chance to make a brand unforgettable.”
           </p>
+        </div>
+      </motion.div>
 
-          <Button
-            asChild
-            className="bg-[#8d092c] hover:bg-[#a31c3c] text-white rounded-full px-6 py-3 text-lg"
-          >
-            <Link href="/services">Explore My Services</Link>
-          </Button>
-        </motion.div>
+      {/* TOOLS SECTION */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-20 text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#e91e63] via-[#f06292] to-[#ffb6c1] bg-clip-text text-transparent mb-10"
+        >
+          Our Creative Tools
+        </motion.h2>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 justify-center">
+          {tools.map((tool, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.05 }}
+              className="flex flex-col items-center p-6 bg-[#1a1442]/70 rounded-2xl border border-transparent hover:border-[#e91e63] hover:shadow-[0_0_20px_#e91e63] transition-all duration-300"
+            >
+              {tool.icon}
+              <p className="mt-3 text-gray-300 font-medium">{tool.name}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
 
-      {/* (Process, Tools, Testimonials, CTA sections remain unchanged) */}
-      {/* Keep the ones you already had below this line */}
+      {/* TESTIMONIALS SECTION */}
+      <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-20">
+        <motion.h2
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-center text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#e91e63] via-[#f06292] to-[#ffb6c1] bg-clip-text text-transparent mb-16"
+        >
+          What Our Clients Say
+        </motion.h2>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {testimonials.map((t, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className="bg-[#1a1442]/70 rounded-2xl p-8 shadow-lg hover:shadow-[0_0_25px_#e91e63] border border-transparent hover:border-[#e91e63] transition-all duration-300"
+            >
+              <div className="flex flex-col items-center mb-4">
+                <Image
+                  src={t.image}
+                  alt={t.name}
+                  width={80}
+                  height={80}
+                  className="rounded-full object-cover border-2 border-[#e91e63] shadow-[0_0_15px_#e91e63]"
+                />
+              </div>
+              <p className="text-gray-300 italic mb-4">“{t.message}”</p>
+              <h4 className="text-lg font-semibold text-white">{t.name}</h4>
+              <p className="text-sm text-gray-400">{t.role}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* FINAL CTA */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="text-center py-20"
+      >
+        <p className="text-gray-300 text-lg mb-6">
+          Let us create visuals that bring your brand to life.
+        </p>
+        <Link href="/contact">
+          <Button className="px-8 py-3 rounded-full bg-gradient-to-r from-[#e91e63] via-[#9c27b0] to-[#673ab7] cursor-pointer hover:opacity-10 transition">
+            Work With Us
+          </Button>
+        </Link>
+      </motion.div>
     </section>
   );
 };
-
 export default AboutPage;
