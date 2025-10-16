@@ -25,7 +25,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-gradient-to-b from-[#111827] to-[#1f2937] text-gray-300 py-12 mt-20">
+    <footer className="relative bg-gradient-to-b from-[#111827] to-[#1f2937] text-gray-300 py-12">
       <div className="container mx-auto px-6 md:px-12 lg:px-20 grid grid-cols-1 md:grid-cols-3 gap-12">
         {/* Brand Section */}
         <div>
@@ -111,12 +111,10 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
       {/* Copyright */}
       <div className="border-t border-gray-700 mt-10 pt-6 text-center text-gray-500 text-sm">
         © {new Date().getFullYear()} TunHub Concepts. All rights reserved.
       </div>
-
       {copied && (
         <div className="absolute bottom-6 right-6 bg-sky-600 text-white px-4 py-2 rounded-full text-sm shadow-lg animate-fadeInOut">
           {copied === 'phone' ? 'Phone number copied!' : 'Email copied!'}

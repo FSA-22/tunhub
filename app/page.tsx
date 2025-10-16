@@ -1,5 +1,6 @@
 import About from '@/components/AboutSection';
 import Hero from '@/components/HeroSection';
+import ProjectsSection from '@/components/projects';
 import Services from '@/components/Services';
 import React from 'react';
 
@@ -9,6 +10,7 @@ const Home = () => {
       <Hero />
       <About />
       <Services />
+      <ProjectsSection />
     </section>
   );
 };
