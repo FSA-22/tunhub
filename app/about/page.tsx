@@ -102,7 +102,7 @@ export default function AboutPage() {
       >
         <div className="relative">
           <Image
-            src="/images/ceo.jpg"
+            src="/ceo.jpg"
             alt="TunHub CEO"
             width={640}
             height={640}
