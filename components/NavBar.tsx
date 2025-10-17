@@ -69,21 +69,21 @@ const Navbar = () => {
         >
           <Link
             href="/"
-            className="text-2xl flex justify-center items-center  gap-2 font-bold bg-gradient-to-r from-[#8d092c] to-[#c94f7c] bg-clip-text text-transparent"
+            className="text-xl md:text-2xl flex justify-center items-center  gap-2 font-bold bg-gradient-to-r from-[#8d092c] to-[#c94f7c] bg-clip-text text-transparent"
           >
             <Image
-              src={'/logo.jpg'}
+              src={'/TunHub.png'}
               width={30}
               height={30}
               alt="TunHub-logo"
-              className="rounded-full"
+              className="rounded-full max-[1024px]:w-10 max-[1024px]:h-10 max-[1024px]:object-cover max-[1024px]:object-center"
             />
-            TunHub
+            <span className="hidden lg:block">TunHub</span>
           </Link>
         </motion.div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-10 relative">
+        <div className="hidden lg:flex items-center space-x-10 relative">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             const isHovered = hovered === link.href;
