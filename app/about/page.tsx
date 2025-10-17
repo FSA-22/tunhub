@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaFigma, FaCameraRetro, FaPaintBrush } from 'react-icons/fa';
 import {
   SiAdobephotoshop,
   SiAdobeillustrator,
@@ -11,7 +10,7 @@ import {
   SiAdobelightroom,
   SiCoreldraw,
 } from 'react-icons/si';
-
+import { FaFigma, FaCameraRetro, FaPaintBrush } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 import { ABOUT_ME, name, testimonials } from '@/constants/about';
 
@@ -44,14 +43,38 @@ const tools = [
   },
 ];
 
-const AboutPage = () => {
+// const testimonials = [
+//   {
+//     name: 'Grace Omotayo',
+//     role: 'Founder, Glitz Wigs',
+//     message:
+//       'TunHub completely transformed my brand identity. From logo to packaging and product shoot, everything now looks world-class.',
+//     image: '/clients/grace.jpg',
+//   },
+//   {
+//     name: 'Joshua Daniel',
+//     role: 'CEO, PrintHaus',
+//     message:
+//       'The best creative experience I’ve had. TunHub’s attention to detail, brand consistency, and color accuracy is unmatched.',
+//     image: '/clients/joshua.jpg',
+//   },
+//   {
+//     name: 'Precious Olayemi',
+//     role: 'Marketing Lead, TrendyGifts',
+//     message:
+//       'Their team captured exactly what our brand stands for and made it shine through every visual they designed.',
+//     image: '/clients/precious.jpg',
+//   },
+// ];
+
+export default function AboutPage() {
   return (
     <section className="min-h-screen bg-gradient-to-br from-[#0a0524] via-[#1a0b44] to-[#2b0f5e] text-white relative overflow-hidden">
       {/* Animated Glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#e91e63_0%,_transparent_70%)] opacity-30 animate-pulse" />
 
       {/* HERO SECTION */}
-      <div className="relative px-6 md:px-12 lg:px-20 py-24 text-center">
+      <div className="relative px-6 md:px-12 lg:px-20 py-20 text-center">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -61,9 +84,12 @@ const AboutPage = () => {
           About TunHub
         </motion.h1>
         <p className="mt-6 text-gray-300 max-w-3xl mx-auto text-lg">
-          TunHub is a creative hub specializing in **graphic design, brand
-          identity, print, and product photography**. We help brands express
-          their stories through visuals that speak louder than words.
+          TunHub is a creative hub specializing in{' '}
+          <strong>
+            graphic design, brand identity, print, and product photography
+          </strong>
+          . We help brands express their stories through visuals that speak
+          louder than words.
         </p>
       </div>
 
@@ -72,14 +98,14 @@ const AboutPage = () => {
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-16 grid md:grid-cols-2 gap-10 items-center"
+        className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-12 grid md:grid-cols-2 gap-10 items-center relative z-10"
       >
         <div className="relative">
           <Image
-            src="/ceo.jpg"
+            src="/images/ceo.jpg"
             alt="TunHub CEO"
-            width={500}
-            height={400}
+            width={640}
+            height={640}
             className="rounded-2xl object-cover shadow-[0_0_25px_rgba(233,30,99,0.4)]"
           />
         </div>
@@ -88,23 +114,31 @@ const AboutPage = () => {
           <h2 className="text-3xl font-bold bg-gradient-to-r from-[#e91e63] to-[#9c27b0] bg-clip-text text-transparent mb-4">
             Meet Our Creative Director
           </h2>
-          <p className="text-gray-400 mb-6">
-            Hello, <span className="text-2xl font-semibold">{name}</span>
+          <p className="text-gray-400 mb-4">
+            <strong>{name}</strong>
             {ABOUT_ME}
           </p>
-          <p className="text-gray-400">
+          <p className="text-gray-400 italic mb-6">
             “At TunHub, we do not just design — we communicate. Every project is
             a chance to make a brand unforgettable.”
           </p>
+
+          <Button
+            asChild
+            className="bg-white text-[#8d092c] hover:bg-[#f2b8c6] font-semibold px-6 py-3 rounded-full text-lg"
+          >
+            <Link href="/contact">Contact Simon</Link>
+          </Button>
         </div>
       </motion.div>
 
       {/* TOOLS SECTION */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-20 text-center">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-16 text-center relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#e91e63] via-[#f06292] to-[#ffb6c1] bg-clip-text text-transparent mb-10"
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#e91e63] via-[#f06292] to-[#ffb6c1] bg-clip-text text-transparent mb-8"
         >
           Our Creative Tools
         </motion.h2>
@@ -113,12 +147,13 @@ const AboutPage = () => {
           {tools.map((tool, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.05 }}
-              className="flex flex-col items-center p-6 bg-[#1a1442]/70 rounded-2xl border border-transparent hover:border-[#e91e63] hover:shadow-[0_0_20px_#e91e63] transition-all duration-300"
+              initial={{ opacity: 0, y: 10, scale: 0.98 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              whileHover={{ y: -6, scale: 1.04 }}
+              transition={{ delay: index * 0.05, duration: 0.35 }}
+              className="flex flex-col items-center p-6 bg-[#35002c8c]/50 rounded-2xl border border-transparent hover:border-[#e91e63] hover:shadow-[0_0_20px_#e91e63] transition-all duration-300 cursor-pointer"
             >
-              {tool.icon}
+              <div>{tool.icon}</div>
               <p className="mt-3 text-gray-300 font-medium">{tool.name}</p>
             </motion.div>
           ))}
@@ -126,11 +161,12 @@ const AboutPage = () => {
       </div>
 
       {/* TESTIMONIALS SECTION */}
-      <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-20">
+      <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-16 relative z-10">
         <motion.h2
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-center text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#e91e63] via-[#f06292] to-[#ffb6c1] bg-clip-text text-transparent mb-16"
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="text-center text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#e91e63] via-[#f06292] to-[#ffb6c1] bg-clip-text text-transparent mb-12"
         >
           What Our Clients Say
         </motion.h2>
@@ -141,21 +177,25 @@ const AboutPage = () => {
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-[#1a1442]/70 rounded-2xl p-8 shadow-lg hover:shadow-[0_0_25px_#e91e63] border border-transparent hover:border-[#e91e63] transition-all duration-300"
+              whileHover={{ y: -6, scale: 1.03 }}
+              transition={{ delay: index * 0.08, duration: 0.35 }}
+              className="bg-[#1a1442]/90 rounded-2xl p-6 shadow-lg hover:shadow-[0_0_25px_#e91e63] border border-transparent hover:border-[#e91e63] transition-all duration-300 cursor-pointer"
             >
-              <div className="flex flex-col items-center mb-4">
-                <Image
-                  src={t.image}
-                  alt={t.name}
-                  width={80}
-                  height={80}
-                  className="rounded-full object-cover border-2 border-[#e91e63] shadow-[0_0_15px_#e91e63]"
-                />
+              <div className="flex items-center gap-4 mb-4">
+                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-[#e91e63] shadow-[0_0_15px_#e91e63]">
+                  <Image
+                    src={t.image}
+                    alt={t.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <h4 className="text-white font-semibold">{t.name}</h4>
+                  <p className="text-sm text-gray-400">{t.role}</p>
+                </div>
               </div>
-              <p className="text-gray-300 italic mb-4">“{t.message}”</p>
-              <h4 className="text-lg font-semibold text-white">{t.name}</h4>
-              <p className="text-sm text-gray-400">{t.role}</p>
+              <p className="text-gray-300 italic">“{t.message}”</p>
             </motion.div>
           ))}
         </div>
@@ -164,20 +204,21 @@ const AboutPage = () => {
       {/* FINAL CTA */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        className="text-center py-20"
+        whileInView={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+        className="text-center py-20 relative z-10"
       >
         <p className="text-gray-300 text-lg mb-6">
           Let us create visuals that bring your brand to life.
         </p>
-        <Link href="/contact">
-          <Button className="px-8 py-3 rounded-full bg-gradient-to-r from-[#e91e63] via-[#9c27b0] to-[#673ab7] cursor-pointer hover:opacity-10 transition">
-            Work With Us
-          </Button>
-        </Link>
+
+        <Button
+          asChild
+          className="px-8 py-3 rounded-full bg-gradient-to-r from-[#e91e63] via-[#9c27b0] to-[#673ab7] hover:opacity-90 transition"
+        >
+          <Link href="/contact">Work With Us</Link>
+        </Button>
       </motion.div>
     </section>
   );
-};
-export default AboutPage;
+}
