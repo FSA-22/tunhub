@@ -1,30 +1,8 @@
 'use client';
 
+import { stats } from '@/constants/navbar';
 import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useState } from 'react';
-
-const stats = [
-  {
-    number: '5+',
-    label: 'Years Experience',
-    gradient: 'from-[#8d092c] to-[#c94f7c]',
-  },
-  {
-    number: '300+',
-    label: 'Projects Completed',
-    gradient: 'from-sky-500 to-sky-600',
-  },
-  {
-    number: '100%',
-    label: 'Client Satisfaction',
-    gradient: 'from-purple-500 to-pink-500',
-  },
-  {
-    number: '24/7',
-    label: 'Support Availability',
-    gradient: 'from-[#8d092c] to-[#c94f7c]',
-  },
-];
 
 const InfiniteStatsScroll = () => {
   const controls = useAnimation();

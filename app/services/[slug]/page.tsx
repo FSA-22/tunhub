@@ -6,11 +6,11 @@ import Link from 'next/link';
 import { allServices } from '@/constants/services';
 import { use } from 'react';
 
-export default function ServiceDetailPage({
+const ServiceDetailPage = ({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
+}) => {
   const { slug } = use(params);
   const service = allServices.find((s) => s.slug === slug);
 
@@ -101,4 +101,6 @@ export default function ServiceDetailPage({
       </motion.div>
     </section>
   );
-}
+};
+
+export default ServiceDetailPage;

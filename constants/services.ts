@@ -65,3 +65,12 @@ export const allServices: Service[] = [
     images: ['/logo.jpg', '/tunde.jpg', '/wavy-bg.png'],
   },
 ];
+
+export const categories = [
+  'All',
+  'Design',
+  'Printing',
+  'Gifts',
+  'Merch',
+  'Events',
+];

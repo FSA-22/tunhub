@@ -7,6 +7,7 @@ import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from './ui/button';
+import { navLinks } from '@/constants/navbar';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,14 +45,6 @@ const Navbar = () => {
     if (isOpen) document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen]);
-
-  const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/services', label: 'Services' },
-    { href: '/projects', label: 'Projects' },
-    { href: '/contact', label: 'Contact' },
-  ];
 
   return (
     <nav

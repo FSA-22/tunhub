@@ -4,11 +4,9 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { allServices } from '@/constants/services';
+import { allServices, categories } from '@/constants/services';
 
-const categories = ['All', 'Design', 'Printing', 'Gifts', 'Merch', 'Events'];
-
-export default function ServicesPage() {
+const ServicesPage = () => {
   const [selected, setSelected] = useState('All');
 
   const filteredServices =
@@ -101,4 +99,6 @@ export default function ServicesPage() {
       </motion.div>
     </section>
   );
-}
+};
+
+export default ServicesPage;
