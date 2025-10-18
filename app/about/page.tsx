@@ -43,30 +43,6 @@ const tools = [
   },
 ];
 
-// const testimonials = [
-//   {
-//     name: 'Grace Omotayo',
-//     role: 'Founder, Glitz Wigs',
-//     message:
-//       'TunHub completely transformed my brand identity. From logo to packaging and product shoot, everything now looks world-class.',
-//     image: '/clients/grace.jpg',
-//   },
-//   {
-//     name: 'Joshua Daniel',
-//     role: 'CEO, PrintHaus',
-//     message:
-//       'The best creative experience I’ve had. TunHub’s attention to detail, brand consistency, and color accuracy is unmatched.',
-//     image: '/clients/joshua.jpg',
-//   },
-//   {
-//     name: 'Precious Olayemi',
-//     role: 'Marketing Lead, TrendyGifts',
-//     message:
-//       'Their team captured exactly what our brand stands for and made it shine through every visual they designed.',
-//     image: '/clients/precious.jpg',
-//   },
-// ];
-
 export default function AboutPage() {
   return (
     <section className="min-h-screen bg-gradient-to-br from-[#0a0524] via-[#1a0b44] to-[#2b0f5e] text-white relative overflow-hidden">

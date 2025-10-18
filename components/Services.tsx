@@ -41,7 +41,7 @@ const Services = () => {
           transition={{ duration: 1, ease: 'easeOut' }}
           viewport={{ once: true }}
         >
-          {limitedServices.map((service, index) => (
+          {limitedServices.map((service) => (
             <Link href={`/services/${service.slug}`} key={service.slug}>
               <motion.div
                 className="group relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 p-8 flex flex-col items-center justify-center text-center cursor-pointer overflow-hidden"
