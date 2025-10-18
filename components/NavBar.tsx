@@ -6,6 +6,7 @@ import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Button } from './ui/button';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +15,6 @@ const Navbar = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
-  // Track page scroll progress
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -22,14 +22,19 @@ const Navbar = () => {
     restDelta: 0.001,
   });
 
-  // Scroll blur effect
+  //  Scroll effect
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile when clicking outside
+  //  Lock scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+  }, [isOpen]);
+
+  //  Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
@@ -53,8 +58,9 @@ const Navbar = () => {
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled ? 'backdrop-blur-lg bg-white/10 shadow-sm' : 'bg-transparent'
       }`}
+      role="navigation"
     >
-      {/* 🔹 Scroll Progress Bar */}
+      {/* Scroll Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-[#8d092c] to-[#c94f7c] origin-left z-[9999]"
         style={{ scaleX }}
@@ -62,25 +68,19 @@ const Navbar = () => {
 
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 md:px-10">
         {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
+        <Link
+          href="/"
+          className="text-xl md:text-2xl flex items-center gap-2 font-bold bg-gradient-to-r from-[#8d092c] to-[#c94f7c] bg-clip-text text-transparent"
         >
-          <Link
-            href="/"
-            className="text-xl md:text-2xl flex justify-center items-center  gap-2 font-bold bg-gradient-to-r from-[#8d092c] to-[#c94f7c] bg-clip-text text-transparent"
-          >
-            <Image
-              src={'/TunHub.png'}
-              width={30}
-              height={30}
-              alt="TunHub-logo"
-              className="rounded-full max-[1024px]:w-10 max-[1024px]:h-10 max-[1024px]:object-cover max-[1024px]:object-center"
-            />
-            <span className="hidden lg:block">TunHub</span>
-          </Link>
-        </motion.div>
+          <Image
+            src="/TunHub.png"
+            width={32}
+            height={32}
+            alt="TunHub Logo"
+            className="rounded-full object-cover object-center"
+          />
+          <span className="hidden lg:block">TunHub</span>
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-10 relative">
@@ -96,46 +96,38 @@ const Navbar = () => {
               >
                 <Link
                   href={link.href}
-                  className={`text-white/90 transition-colors duration-200 font-medium ${
+                  className={`text-white/90 font-medium transition-colors duration-200 ${
                     isActive ? 'text-white' : 'hover:text-white'
                   }`}
                 >
                   {link.label}
                 </Link>
-
-                {/* Underline animation */}
                 {(isActive || isHovered) && (
                   <motion.div
-                    layoutId="activeIndicator"
+                    layoutId="underline"
                     className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-[#8d092c] to-[#c94f7c] rounded-full"
-                    transition={{
-                      type: 'spring',
-                      stiffness: 400,
-                      damping: 30,
-                    }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
               </motion.div>
             );
           })}
-
-          <motion.a
-            href="/projects"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-            className="ml-6 px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-[#8d092c] to-[#c94f7c] text-white shadow-md hover:shadow-lg transition-all"
+          <Button
+            asChild
+            className="ml-6 bg-gradient-to-r from-[#8d092c] to-[#c94f7c] text-white rounded-full shadow-md hover:shadow-lg px-5 py-2"
           >
-            Explore
-          </motion.a>
+            <Link href="/projects">Explore</Link>
+          </Button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
+        {/* Mobile Button */}
+        <Button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-white focus:outline-none"
+          className="lg:hidden text-white focus:outline-none focus:ring-2 focus:ring-pink-500 bg-transparent hover:bg-transparent rounded-md"
+          aria-label="Toggle Menu"
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        </Button>
       </div>
 
       {/* Mobile Menu */}
@@ -144,7 +136,7 @@ const Navbar = () => {
           <>
             {/* Overlay */}
             <motion.div
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -158,11 +150,12 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 w-3/4 h-full bg-[#0f011a]/95 backdrop-blur-lg shadow-lg z-50 flex flex-col px-8 pt-10"
+              className="fixed top-0 right-0 w-3/4 sm:w-2/3 md:w-1/2 h-full bg-[#0f011a]/95 backdrop-blur-lg shadow-lg z-50 flex flex-col px-8 pt-10"
             >
               <button
                 onClick={() => setIsOpen(false)}
-                className="absolute top-5 right-6 text-gray-300 hover:text-white transition"
+                className="absolute top-5 right-6 text-gray-300 hover:text-white"
+                aria-label="Close Menu"
               >
                 <X size={28} />
               </button>
@@ -180,27 +173,24 @@ const Navbar = () => {
                       <Link
                         href={link.href}
                         onClick={() => setIsOpen(false)}
-                        className={`text-xl font-medium transition-all duration-200 ${
+                        className={`text-xl font-medium ${
                           isActive
                             ? 'text-[#c94f7c] border-b-2 border-[#c94f7c]'
                             : 'text-white hover:text-[#c94f7c]'
-                        }`}
+                        } transition-all duration-200`}
                       >
                         {link.label}
                       </Link>
                     </motion.div>
                   );
                 })}
-
-                <motion.a
-                  href="/projects"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.97 }}
+                <Button
                   onClick={() => setIsOpen(false)}
-                  className="px-6 py-3 rounded-full bg-gradient-to-r from-[#8d092c] to-[#c94f7c] text-white font-semibold shadow-md"
+                  asChild
+                  className="px-6 py-3 rounded-full bg-gradient-to-r from-[#8d092c] to-[#c94f7c] text-white font-semibold shadow-md hover:shadow-lg"
                 >
-                  Explore
-                </motion.a>
+                  <Link href="/projects">Explore</Link>
+                </Button>
               </div>
             </motion.div>
           </>
