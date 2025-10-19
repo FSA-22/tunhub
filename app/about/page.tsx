@@ -54,7 +54,7 @@ export default function AboutPage() {
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.5 }}
           className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-[#e91e63] via-[#f06292] to-[#ffb6c1] bg-clip-text text-transparent"
         >
           About TunHub
@@ -101,9 +101,9 @@ export default function AboutPage() {
 
           <Button
             asChild
-            className="bg-white text-[#8d092c] hover:bg-[#f2b8c6] font-semibold px-6 py-3 rounded-full text-lg"
+            className="bg-[#ff5d8885] text-white hover:bg-[#f2b8c6] hover:text-[#8d092c] font-semibold px-6 py-3 rounded-full text-lg"
           >
-            <Link href="/contact">Contact Simon</Link>
+            <Link href="/contact">Contact Tunhub</Link>
           </Button>
         </div>
       </motion.div>

@@ -11,7 +11,7 @@ const ProjectsSection = () => {
   const featured = allProjects.slice(0, 6);
 
   return (
-    <section className="relative w-full py-24 bg-gradient-to-b from-[#fff5f7] via-white to-[#fff8fa] overflow-hidden">
+    <section className="relative w-full py-24 bg-gradient-to-b from-[#f2b8c6] via-purple-300 to-[#c94f7c] overflow-hidden">
       {/* Decorative background glow elements */}
       <motion.div
         className="absolute top-[-4rem] left-[-4rem] w-[20rem] h-[20rem] bg-[#8d092c]/20 rounded-full blur-3xl"
@@ -20,7 +20,7 @@ const ProjectsSection = () => {
         transition={{ duration: 1.2 }}
       />
       <motion.div
-        className="absolute bottom-[-6rem] right-[-6rem] w-[24rem] h-[24rem] bg-[#c94f7c]/20 rounded-full blur-3xl"
+        className="absolute bottom-[-6rem] right-[-6rem] w-[24rem] h-[24rem] bg-[#8d092c] rounded-full blur-3xl"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 0.5 }}
         transition={{ duration: 1.2 }}
