@@ -73,9 +73,10 @@ const Hero = () => {
             }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            className="hover:rounded-full"
           >
             <Link href="/about">
-              <Button className="bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 rounded-full text-lg">
+              <Button className="bg-[#8d092c] hover:bg-sky-700 text-white px-6 py-3 rounded-full text-lg">
                 View Portfolio
               </Button>
             </Link>
