@@ -1,32 +1,43 @@
 'use client';
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import InfiniteStatsScroll from './StatCard';
 
 const Hero = () => {
   return (
-    <section className="h-screen flex flex-col items-start justify-center overflow-hidden">
-      {/* Full Background Image */}
-      <div className="absolute inset-0 z-10">
-        <Image
-          src="/wavy-bg.png"
-          alt="Abstract wavy background"
-          fill
-          priority
-          className=" object-right-bottom object-cover"
-        />
+    <section
+      className="
+        relative 
+        flex flex-col 
+        justify-center items-center 
+        h-[75vh] md:h-screen 
+        overflow-hidden 
+        bg-[url('/wavy-bg.png')] 
+        bg-cover bg-right-bottom 
+        bg-no-repeat
+        w-full
+      "
+    >
+      {/* Moving stats section just below navbar */}
+      <div className="absolute top-20 left-0 w-full z-20">
+        <InfiniteStatsScroll />
       </div>
 
-      {/* Hero Content */}
+      {/* Overlay for slight dimming */}
+      <div className="absolute inset-0 bg-black/40 z-10"></div>
+
+      {/* Hero content */}
       <motion.div
-        className="relative z-10 px-6 text-center md:px-12"
+        className="relative z-30 px-6 text-center md:px-12 mt-12"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: 'easeOut' }}
       >
         <motion.h1
-          className="text-4xl font-bold leading-tight md:text-6xl lg:text-7xl mb-2  bg-gradient-to-l from-[#8d092c] via-[#c94f7c] to-[#f2b8c6] bg-clip-text text-transparent"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-2 
+            bg-gradient-to-l from-[#8d092c] via-[#c94f7c] to-[#f2b8c6] 
+            bg-clip-text text-transparent"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.9 }}
@@ -36,9 +47,9 @@ const Hero = () => {
         </motion.h1>
 
         <motion.p
-          className="mt-4 text-base md:mt-6 md:text-lg lg:text-xl max-w-2xl mx-auto
-             bg-gradient-to-r from-[#8d092c] via-[#c94f7c] to-[#f2b8c6]
-             bg-clip-text text-transparent"
+          className="mt-4 text-base md:text-lg lg:text-xl max-w-2xl mx-auto
+            bg-gradient-to-r from-[#8d092c] via-[#c94f7c] to-[#f2b8c6]
+            bg-clip-text text-transparent"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7, duration: 1 }}
@@ -47,7 +58,7 @@ const Hero = () => {
           digital art that tell stories beyond words.
         </motion.p>
 
-        {/* Animated Button */}
+        {/* Call to action */}
         <motion.div
           className="mt-8 flex justify-center"
           initial={{ opacity: 0 }}
@@ -55,7 +66,6 @@ const Hero = () => {
           transition={{ delay: 1.1, duration: 0.8 }}
         >
           <motion.div
-            className="rounded-4xl"
             whileHover={{
               scale: 1.05,
               boxShadow: '0px 6px 13px rgba(56, 189, 248, 0.4)',

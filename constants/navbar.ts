@@ -18,6 +18,11 @@ export const stats = [
     gradient: 'from-sky-500 to-sky-600',
   },
   {
+    number: '300+',
+    label: 'Projects Completed',
+    gradient: 'from-sky-500 to-sky-600',
+  },
+  {
     number: '100%',
     label: 'Client Satisfaction',
     gradient: 'from-purple-500 to-pink-500',
@@ -26,5 +31,15 @@ export const stats = [
     number: '24/7',
     label: 'Support Availability',
     gradient: 'from-[#8d092c] to-[#c94f7c]',
+  },
+  {
+    number: '24/7',
+    label: 'Support Availability',
+    gradient: 'from-[#8d092c] to-[#c94f7c]',
+  },
+  {
+    number: '100%',
+    label: 'Client Satisfaction',
+    gradient: 'from-purple-500 to-pink-500',
   },
 ];

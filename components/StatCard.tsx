@@ -29,7 +29,7 @@ const InfiniteStatsScroll = () => {
   }, [controls, isPaused]);
 
   return (
-    <div className="relative w-full overflow-hidden border-1 py-4">
+    <div className="relative w-full overflow-hidden py-2">
       {/* Fades */}
       <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-violet-600 to-transparent pointer-events-none z-10" />
       <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-violet-600 to-transparent pointer-events-none z-10" />
@@ -47,7 +47,7 @@ const InfiniteStatsScroll = () => {
             key={i}
             whileHover={{ scale: 1.1 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className={`min-w-[160px] flex-shrink-0 p-5 rounded-2xl bg-gradient-to-r ${item.gradient} text-white shadow-lg`}
+            className={`min-w-[160px] flex-shrink-0 p-2 rounded-2xl bg-gradient-to-r ${item.gradient} text-white shadow-lg`}
           >
             <p className="text-2xl font-bold">{item.number}</p>
             <p className="text-sm">{item.label}</p>
